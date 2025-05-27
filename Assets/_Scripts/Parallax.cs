@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Parralax : MonoBehaviour
+public class Parallax : MonoBehaviour
 {
     [SerializeField] private float parallaxSpeed;
     private float spriteHeight;
