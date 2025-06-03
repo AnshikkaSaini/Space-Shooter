@@ -7,6 +7,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] private GameObject[] meteor;
 
     [SerializeField] private float spawnTime;
+    
     private float timer = 0f;
     private int i;
 

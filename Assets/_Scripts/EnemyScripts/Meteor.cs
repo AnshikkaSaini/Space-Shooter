@@ -9,6 +9,7 @@ public class Meteor : Enemy ,IDamageable
 {
     [SerializeField] private float minSpeed;
     [SerializeField] private float maxSpeed;
+    [SerializeField] private float rotateSpeed;
      private float speed; 
     void Start()
     {
@@ -19,7 +20,7 @@ public class Meteor : Enemy ,IDamageable
     // Update is called once per frame
     void Update()
     {
-        
+        transform.Rotate(0,0,rotateSpeed * Time.deltaTime);
     }
 
     public override void HurtSequence()
@@ -29,7 +30,7 @@ public class Meteor : Enemy ,IDamageable
 
     public override void DeathSequence()
     {
-       
+       Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D otherCollider)

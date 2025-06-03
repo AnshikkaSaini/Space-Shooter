@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &781900434271245089
+--- !u!1 &3514396880628986258
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,40 +8,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8427251092157812748}
-  - component: {fileID: 4717887114585616704}
-  - component: {fileID: 8916825226279109767}
-  - component: {fileID: 4828750663208623285}
-  - component: {fileID: 8728851132057278340}
-  m_Layer: 6
-  m_Name: Meteo2
+  - component: {fileID: 4807768827539889052}
+  - component: {fileID: 4198759068420138715}
+  - component: {fileID: 8474862290118725005}
+  - component: {fileID: 9210143864038074131}
+  - component: {fileID: 1271742461940828571}
+  m_Layer: 7
+  m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8427251092157812748
+--- !u!4 &4807768827539889052
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 781900434271245089}
+  m_GameObject: {fileID: 3514396880628986258}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.03, y: 5.12, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.03, y: -2.13, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.63938, z: 0.63938}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &4717887114585616704
+--- !u!212 &4198759068420138715
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 781900434271245089}
+  m_GameObject: {fileID: 3514396880628986258}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -76,43 +76,41 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: d5a1ea9f136ae1440b7ae514df050251, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 42b3b6c9d9569834187361d80417ef71, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.28, y: 1.28}
+  m_Size: {x: 0.64, y: 1.28}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8916825226279109767
+--- !u!114 &8474862290118725005
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 781900434271245089}
+  m_GameObject: {fileID: 3514396880628986258}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c586afd1e459dbe42ab2ab6a1a1746f6, type: 3}
+  m_Script: {fileID: 11500000, guid: 29a347967c500814f81ae1a5e63bfb04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
-  rb: {fileID: 4828750663208623285}
-  minSpeed: 8
-  maxSpeed: 15
-  rotateSpeed: 100
---- !u!50 &4828750663208623285
+  speed: 15
+  damage: 1
+  rb: {fileID: 0}
+--- !u!50 &9210143864038074131
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 781900434271245089}
-  m_BodyType: 0
+  m_GameObject: {fileID: 3514396880628986258}
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -131,13 +129,13 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &8728851132057278340
-CircleCollider2D:
+--- !u!70 &1271742461940828571
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 781900434271245089}
+  m_GameObject: {fileID: 3514396880628986258}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -163,6 +161,6 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.64
+  m_Offset: {x: 0.004834801, y: 0.01134267}
+  m_Size: {x: 0.52074057, y: 1.3026853}
+  m_Direction: 0
