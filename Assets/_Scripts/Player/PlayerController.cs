@@ -5,7 +5,7 @@ using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 
 namespace _Scripts
 {
-    public class PlayerController : MonoBehaviour
+    public class PlayerController : MonoBehaviour, IDamageable
     {
         private Camera _mainCam;
         private Vector3 _offset;
@@ -77,5 +77,22 @@ namespace _Scripts
             maxDown = _mainCam.ViewportToWorldPoint(new Vector2(0, 0.09f)).y;
             maxUp = _mainCam.ViewportToWorldPoint(new Vector2(0, 0.85f)).y;
         }
+
+        
+        public void TakeDamage (int value)
+        {
+            
+            
+            Health -= value;
+
+            if (Health <= 0)
+            {
+                Destroy(gameObject);
+            }
+        }
+
+        public int Sheild { get; set; } = 25;
+
+        public int Health { get; set; } = 100;
     }
 }

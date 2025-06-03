@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class Meteor : Enemy
+
+public class Meteor : Enemy ,IDamageable
 {
     [SerializeField] private float minSpeed;
     [SerializeField] private float maxSpeed;
@@ -37,7 +38,22 @@ public class Meteor : Enemy
         {
             Destroy(otherCollider.gameObject);
         }
+    }
 
-       
+    public void TakeDamage (int value)
+    {
+        Health -= value;
+
+        if (Health <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public int Health { get; set; } = 10;
+
+    private void OnBecameInvisible()
+    {
+        Destroy(this);
     }
 }
