@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
 
@@ -37,7 +38,10 @@ public class Meteor : Enemy ,IDamageable
     {
         if (otherCollider.CompareTag("Player"))
         {
-            Destroy(otherCollider.gameObject);
+            //Destroy(otherCollider.gameObject);
+            PlayerStat player = otherCollider.GetComponent<PlayerStat>();
+            player.TakeDamage(damage);
+            Destroy(gameObject);
         }
     }
 
@@ -51,7 +55,7 @@ public class Meteor : Enemy ,IDamageable
         }
     }
 
-    public int Health { get; set; } = 10;
+    public int Health { get; set; } = 1;
 
     private void OnBecameInvisible()
     {

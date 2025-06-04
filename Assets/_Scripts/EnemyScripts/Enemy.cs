@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
    [SerializeField] protected float health;
    [SerializeField] protected Rigidbody2D rb;
+   [SerializeField] protected int damage;
     void Start()
     {
         

@@ -24,6 +24,8 @@ public class PlayerShooting : MonoBehaviour
 
     private void Shooting()
     {
-        Instantiate(laserBullet, ShootingPoint.position, ShootingPoint.rotation);
+        Vector3 spawnPos = ShootingPoint.position;
+        spawnPos.z = 0f; // For 2D games, ensure it's on the visible Z plane
+        Instantiate(laserBullet, spawnPos, ShootingPoint.rotation);
     }
 }

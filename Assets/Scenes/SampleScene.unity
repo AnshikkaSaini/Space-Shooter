@@ -534,7 +534,7 @@ GameObject:
   m_Component:
   - component: {fileID: 631927806}
   - component: {fileID: 631927807}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: ShootingPoint
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -550,7 +550,7 @@ Transform:
   m_GameObject: {fileID: 631927805}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.805, z: 0}
+  m_LocalPosition: {x: 0, y: 1.633, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -568,9 +568,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98bd144e3305d6c43a89b1459a7ca055, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  laserBullet: {fileID: 0}
+  laserBullet: {fileID: 3514396880628986258, guid: 7d7b06c54a5c46240b0ff3b1cc714a57, type: 3}
   ShootingPoint: {fileID: 631927806}
-  shootingInterval: 0.3
+  shootingInterval: 0.5
 --- !u!1 &876102596
 GameObject:
   m_ObjectHideFlags: 0
@@ -860,9 +860,10 @@ GameObject:
   - component: {fileID: 1127393370}
   - component: {fileID: 1127393369}
   - component: {fileID: 1127393371}
+  - component: {fileID: 1127393374}
   - component: {fileID: 1127393372}
   - component: {fileID: 1127393373}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -978,7 +979,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.07841438, y: 0.018553734}
@@ -1021,6 +1022,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1127393374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1127393368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5811d310fd4652c47a86c33e06f5c464, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 3
 --- !u!1 &1143806205
 GameObject:
   m_ObjectHideFlags: 0
@@ -1033,6 +1047,8 @@ GameObject:
   - component: {fileID: 1143806208}
   - component: {fileID: 1143806207}
   - component: {fileID: 1143806206}
+  - component: {fileID: 1143806211}
+  - component: {fileID: 1143806210}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -1127,6 +1143,35 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &1143806210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143806205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa1d06c305f6c7a41bda1fb6cc72e495, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollSpeedY: 0.1
+--- !u!111 &1143806211
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143806205}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: f27e8b8a2bdb28d48b9f90a05d5e8248, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: f27e8b8a2bdb28d48b9f90a05d5e8248, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1145384525
 GameObject:
   m_ObjectHideFlags: 0

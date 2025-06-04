@@ -14,10 +14,13 @@ public class LaserBullet : MonoBehaviour
     private void Start()
     {
         rb.velocity = transform.up * speed;
+        Debug.Log("Bullet Direction: " + transform.up + ", Speed: " + speed);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.CompareTag("Player")) return; // Ignore self or player collision
+
         Enemy enemy = other.GetComponent<Enemy>();
         if (enemy != null)
         {
@@ -29,6 +32,6 @@ public class LaserBullet : MonoBehaviour
 
     private void OnBecameInvisible()
     {
-        Destroy(gameObject);
+      Destroy(gameObject);
     }
 }
