@@ -30,8 +30,9 @@ public class Meteor : Enemy ,IDamageable
     }
 
     public override void DeathSequence()
-    {
-       Destroy(gameObject);
+    { 
+        Instantiate(explosionPefab, transform.position, transform.rotation);
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D otherCollider)
@@ -41,6 +42,7 @@ public class Meteor : Enemy ,IDamageable
             //Destroy(otherCollider.gameObject);
             PlayerStat player = otherCollider.GetComponent<PlayerStat>();
             player.TakeDamage(damage);
+            Instantiate(explosionPefab, transform.position, transform.rotation);
             Destroy(gameObject);
         }
     }

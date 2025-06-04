@@ -12,6 +12,9 @@ namespace _Scripts
         private float maxLeft, maxRight, maxDown, maxUp;
         private bool isDragging = false;
 
+        public int Shield { get; set; } = 25;
+        public int Health { get; set; } = 100;
+
         void Start()
         {
             _mainCam = Camera.main;
@@ -29,10 +32,10 @@ namespace _Scripts
                     Vector3 touchWorldPos = _mainCam.ScreenToWorldPoint(new Vector3(
                         myTouch.screenPosition.x,
                         myTouch.screenPosition.y,
-                        _mainCam.WorldToScreenPoint(transform.position).z
+                        10f // Safe distance from camera (adjust if needed)
                     ));
+                    touchWorldPos.z = 0f;
 
-                    // 👇 Only set drag if touch starts on the player
                     Collider2D hit = Physics2D.OverlapPoint(new Vector2(touchWorldPos.x, touchWorldPos.y));
                     if (hit != null && hit.transform == transform)
                     {
@@ -47,8 +50,9 @@ namespace _Scripts
                     Vector3 touchWorldPos = _mainCam.ScreenToWorldPoint(new Vector3(
                         myTouch.screenPosition.x,
                         myTouch.screenPosition.y,
-                        _mainCam.WorldToScreenPoint(transform.position).z
+                        10f
                     ));
+                    touchWorldPos.z = 0f;
 
                     Vector3 targetPos = touchWorldPos - _offset;
                     transform.position = new Vector3(
@@ -78,21 +82,13 @@ namespace _Scripts
             maxUp = _mainCam.ViewportToWorldPoint(new Vector2(0, 0.85f)).y;
         }
 
-        
-        public void TakeDamage (int value)
+        public void TakeDamage(int value)
         {
-            
-            
             Health -= value;
-
             if (Health <= 0)
             {
                 Destroy(gameObject);
             }
         }
-
-        public int Sheild { get; set; } = 25;
-
-        public int Health { get; set; } = 100;
     }
 }
