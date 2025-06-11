@@ -15,7 +15,9 @@ public class PlayerStat : MonoBehaviour
     void Start()
     {
         health = maxHealth;
-        healthFill.fillAmount = health / maxHealth;
+       // healthFill.fillAmount = health / maxHealth;
+        EndGameManager.endManager.gameOver = false ;
+        StartCoroutine(UpdateHealthBar());
     }
 
     public void TakeDamage(int value)
@@ -35,6 +37,8 @@ public class PlayerStat : MonoBehaviour
 
         if (health <= 0)
         {
+            EndGameManager.endManager.gameOver = true;
+            EndGameManager.endManager.StartResolveSequence();
             Instantiate(explosionPefab, transform.position, transform.rotation);
             Debug.Log("Player Died.");
             Destroy(gameObject);
@@ -46,6 +50,18 @@ public class PlayerStat : MonoBehaviour
         canPlayAnim = false;
         yield return new WaitForSeconds(0.15f);
         canPlayAnim = true;
+    }
+    private IEnumerator UpdateHealthBar()
+    {
+        float startFill = healthFill.fillAmount;
+        float targetFill = health / maxHealth;
+        float t = 0f;
+        while (t < 1f)
+        {
+            t += Time.deltaTime * 5f; // speed multiplier
+            healthFill.fillAmount = Mathf.Lerp(startFill, targetFill, t);
+            yield return null;
+        }
     }
 
 }
