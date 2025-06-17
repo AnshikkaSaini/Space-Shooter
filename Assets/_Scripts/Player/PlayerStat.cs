@@ -9,6 +9,7 @@ public class PlayerStat : MonoBehaviour
     private float health;
     [SerializeField] private Image healthFill;
     [SerializeField] protected GameObject explosionPefab;
+    [SerializeField] public Shield shield;
  
     [SerializeField] private Animator anim;
     private bool canPlayAnim = true;
@@ -22,7 +23,12 @@ public class PlayerStat : MonoBehaviour
 
     public void TakeDamage(int value)
     {
-       
+        if (shield != null && shield.protection && false)
+        {
+            shield.DamageShield();  // Now this will work
+            return;                 // Shield absorbs damage, no health lost
+        }
+
         health -= value;
       
         Debug.Log("Player took damage. Remaining Health: " + health);
@@ -62,6 +68,20 @@ public class PlayerStat : MonoBehaviour
             healthFill.fillAmount = Mathf.Lerp(startFill, targetFill, t);
             yield return null;
         }
+    }
+
+    public void AddHealth(int healAmount)
+    {
+        Debug.Log("Healing by: " + healAmount); // 🔍 LOG
+
+        health += healAmount;
+        if (health > maxHealth)
+        {
+            health = maxHealth;
+        }
+
+        StopCoroutine(UpdateHealthBar()); // optional: cancel any running animation
+        StartCoroutine(UpdateHealthBar()); // smooth bar update
     }
 
 }

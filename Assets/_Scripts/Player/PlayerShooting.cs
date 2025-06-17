@@ -3,8 +3,17 @@ using UnityEngine;
 public class PlayerShooting : MonoBehaviour
 {
     [SerializeField] private GameObject laserBullet;
-    [SerializeField] private Transform ShootingPoint;
     [SerializeField] private float shootingInterval = 0.5f;
+    [Header("Basic Attack")]
+    [SerializeField] private Transform ShootingPoint;
+
+    [Header("Upgrade Points")]
+    [SerializeField] private Transform leftCanon;
+    [SerializeField]private Transform rightCanon;
+    [SerializeField] private AudioSource source;
+    
+    private int upgradeLevel = 0;
+    
     private float intervalReset;
 
     void Start()
@@ -22,10 +31,41 @@ public class PlayerShooting : MonoBehaviour
         }
     }
 
+    public void IncreaseUpgrade(int increaseAmount)
+    {
+        upgradeLevel += increaseAmount;
+        if (upgradeLevel > 4)
+        {
+            upgradeLevel = 4;
+        }
+    }
+
+    // ReSharper disable Unity.PerformanceAnalysis
     private void Shooting()
     {
-        Vector3 spawnPos = ShootingPoint.position;
-        spawnPos.z = 0f; // For 2D games, ensure it's on the visible Z plane
-        Instantiate(laserBullet, spawnPos, ShootingPoint.rotation);
+        if(source != null)
+        {
+            source.Play();
+        }
+
+        switch (upgradeLevel)
+        {
+            case 0:
+                Instantiate(laserBullet, ShootingPoint.position, Quaternion.identity);
+                break;
+            case 1:
+                Instantiate(laserBullet, leftCanon.position, Quaternion.identity);
+                Instantiate(laserBullet, rightCanon.position, Quaternion.identity);
+                break;
+            case 2:
+                Instantiate(laserBullet, ShootingPoint.position, Quaternion.identity);
+                Instantiate(laserBullet, leftCanon.position,Quaternion.identity);
+                Instantiate(laserBullet, rightCanon.position, Quaternion.identity);
+                break;
+           
+                
+            
+        }
+        
     }
 }

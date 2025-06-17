@@ -464,7 +464,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 8.222222
+  orthographic size: 7.111111
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1868,6 +1868,21 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45386236aad743f4f9868cbc5736e9ea, type: 3}
+--- !u!1 &1548481637411465871 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 24273426218054353, guid: 45386236aad743f4f9868cbc5736e9ea, type: 3}
+  m_PrefabInstance: {fileID: 1548481637411465870}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1548481637411465872 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1072580720439198250, guid: 45386236aad743f4f9868cbc5736e9ea, type: 3}
+  m_PrefabInstance: {fileID: 1548481637411465870}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1548481637411465873 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5869474518061572873, guid: 45386236aad743f4f9868cbc5736e9ea, type: 3}
+  m_PrefabInstance: {fileID: 1548481637411465870}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1653331074284149695
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2200,6 +2215,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7764336359734737915, guid: fff35f2ac69ebd84c9d842953719c755, type: 3}
+      propertyPath: shieldBase.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7764336359734737915, guid: fff35f2ac69ebd84c9d842953719c755, type: 3}
+      propertyPath: shieldBase.Array.data[0]
+      value: 
+      objectReference: {fileID: 1548481637411465873}
+    - target: {fileID: 7764336359734737915, guid: fff35f2ac69ebd84c9d842953719c755, type: 3}
+      propertyPath: shieldBase.Array.data[1]
+      value: 
+      objectReference: {fileID: 1548481637411465872}
+    - target: {fileID: 7764336359734737915, guid: fff35f2ac69ebd84c9d842953719c755, type: 3}
+      propertyPath: shieldBase.Array.data[2]
+      value: 
+      objectReference: {fileID: 1548481637411465871}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

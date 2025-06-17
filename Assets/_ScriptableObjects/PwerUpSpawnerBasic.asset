@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a685d01e5310d7d46b318fadfdba3253, type: 3}
+  m_Name: PwerUpSpawnerBasic
+  m_EditorClassIdentifier: 
+  powerUp:
+  - {fileID: 5008916631353268575, guid: 89a2426c988c3d144a90f5bb6bb1a214, type: 3}
+  - {fileID: 3271185271814422, guid: 413fbbbd30de3904787fe8a7e2e737cc, type: 3}
+  - {fileID: 7678796892136958623, guid: c7d538f3d6ab35d41a3674e6d8e1f26d, type: 3}
+  spawnThreshold: 50
+  spawnDelayMS: 314

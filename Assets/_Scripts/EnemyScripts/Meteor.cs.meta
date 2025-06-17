@@ -3,7 +3,11 @@ guid: c586afd1e459dbe42ab2ab6a1a1746f6
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - rb: {instanceID: 0}
+  - explosionPefab: {fileID: 9121887924122857723, guid: 3b0222ef34df8314d9cb7bee083c0bfd, type: 3}
+  - anim: {instanceID: 0}
+  - powerUpSpawner: {fileID: 11400000, guid: e8a02194fdfeda54291870b4eaae260d, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
