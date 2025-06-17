@@ -172,4 +172,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healAmount: 2
-  clickToPlay: {fileID: 8300000, guid: 0d3b74c9d94c0ae4e81bd4b031a13e52, type: 3}
+  clickToPlay: {fileID: 8300000, guid: 7f5b0d131e4c2cf47803b88418ac34d6, type: 3}
