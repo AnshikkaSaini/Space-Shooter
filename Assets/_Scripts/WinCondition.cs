@@ -18,7 +18,7 @@ public class WinCondition : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (EndGameManager.endManager.gameOver == true)
+        if (EndGameManager.Instance.gameOver == true)
         {
             return;
         }
@@ -30,7 +30,7 @@ public class WinCondition : MonoBehaviour
             {
                 spawner[i].SetActive(false);
             }
-            EndGameManager.endManager.StartResolveSequence();
+            EndGameManager.Instance.StartResolveSequence();
             gameObject.SetActive(false);
             
         }

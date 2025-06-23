@@ -7,10 +7,20 @@ public class InterstitialAd : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsSho
 {
     [SerializeField] private string _androidAdUnit = "Interstitial_Android";
     [SerializeField] private string _iOSAdUnit = "Interstitial_iOS";
+    [SerializeField] private BannerAds bannerAd;
     private string _adUnitID;
+    
 
-    void Awake()
+    void Awake(Object instance)
     {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject); // prevent duplicates
+            return;
+        }
+
+        instance = this;
+        DontDestroyOnLoad(gameObject);
 #if UNITY_IOS
         _adUnitID = _iOSAdUnit;
 #elif UNITY_ANDROID
@@ -51,8 +61,9 @@ public class InterstitialAd : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsSho
         if (placementId.Equals(_adUnitID) && showCompletionState == UnityAdsShowCompletionState.COMPLETED)
         {
             Debug.Log("Ad Completed Successfully");
-            // Optionally: Load another ad for next time
+            Time.timeScale = 1;
             LoadAd();
+            bannerAd.LoadBanner();
         }
     }
 
@@ -64,6 +75,10 @@ public class InterstitialAd : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsSho
     public void OnUnityAdsShowStart(string placementId)
     {
         Debug.Log("Ad Started");
+        Advertisement.Banner.Hide();
+        Time.timeScale = 0;
+        
+        
     }
 
     public void OnUnityAdsShowClick(string placementId)

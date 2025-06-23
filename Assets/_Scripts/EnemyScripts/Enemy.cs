@@ -34,6 +34,6 @@ public class Enemy : MonoBehaviour
 
     public virtual void DeathSequence()
     {
-        EndGameManager.endManager.UpdateScore(scoreValue);
+        EndGameManager.Instance.UpdateScore(scoreValue);
     }
 }

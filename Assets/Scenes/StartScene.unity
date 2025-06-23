@@ -1971,10 +1971,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: CanvasFader
       objectReference: {fileID: 0}
-    - target: {fileID: 4493188571673830209, guid: dd7e0bd12b0a0aa44a7db69f1da22076, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8814759971000187120, guid: dd7e0bd12b0a0aa44a7db69f1da22076, type: 3}
       propertyPath: m_Pivot.x
       value: 0

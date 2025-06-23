@@ -7,7 +7,7 @@ public class ScoreRegistration : MonoBehaviour
     void Start()
     {
         TextMeshProUGUI textForRegistration = GetComponent<TextMeshProUGUI>();
-        EndGameManager.endManager.RegisterScoreText(textForRegistration);
+        EndGameManager.Instance.RegisterScoreText(textForRegistration);
         textForRegistration.text = "Score: 0";
     }
 

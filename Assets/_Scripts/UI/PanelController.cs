@@ -11,7 +11,7 @@ public class PanelController : MonoBehaviour
     
     void Start()
     {
-        EndGameManager.endManager.RegisterPanelController( this);
+        EndGameManager.Instance.RegisterPanelController( this);
     }
 
     public void ActivateWin()

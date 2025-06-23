@@ -17,7 +17,7 @@ public class PlayerStat : MonoBehaviour
     {
         health = maxHealth;
        // healthFill.fillAmount = health / maxHealth;
-        EndGameManager.endManager.gameOver = false ;
+        EndGameManager.Instance.gameOver = false ;
         StartCoroutine(UpdateHealthBar());
     }
 
@@ -43,8 +43,8 @@ public class PlayerStat : MonoBehaviour
 
         if (health <= 0)
         {
-            EndGameManager.endManager.gameOver = true;
-            EndGameManager.endManager.StartResolveSequence();
+            EndGameManager.Instance.gameOver = true;
+            EndGameManager.Instance.StartResolveSequence();
             Instantiate(explosionPefab, transform.position, transform.rotation);
             Debug.Log("Player Died.");
             Destroy(gameObject);

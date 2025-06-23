@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class EndGameManager : MonoBehaviour
 {
-    public static EndGameManager endManager;
+    public static EndGameManager Instance;
     public bool gameOver;
     private PanelController panelController;
     private TextMeshProUGUI scoreTextComponent;
@@ -17,9 +17,9 @@ public class EndGameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (endManager == null)
+        if (Instance == null)
         {
-            endManager = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -69,8 +69,6 @@ public class EndGameManager : MonoBehaviour
             PlayerPrefs.SetInt(lvlUnlock,nextLevel);
         }
     }
-
-    
     
     public void LoseGame()
     {

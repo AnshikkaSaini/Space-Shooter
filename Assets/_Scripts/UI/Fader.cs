@@ -1,20 +1,22 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-
 public class Fader : MonoBehaviour
 {
+    public static Fader Instance;
+
+    [Header("Fade Settings")]
+    [SerializeField] private CanvasGroup canvasGroup;
+    [SerializeField] private float changeValue = 0.05f;
+    [SerializeField] private float waitTime = 0.01f;
+
+    [Header("Loading Screen")]
     [SerializeField] private GameObject loadingScreen;
     [SerializeField] private Image loadingBar;
-    public static Fader Instance;
-    [SerializeField] private CanvasGroup canvasGroup;
-    [SerializeField] private float changeValue;
-    [SerializeField] private float waitTime;
-    [SerializeField] private bool fadeStarted;
+
+    private bool fadeStarted = false;
 
     private void Awake()
     {
@@ -23,23 +25,21 @@ public class Fader : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        else if (Instance != this)
+        else
         {
             Destroy(gameObject);
         }
     }
 
-    void Start()
+    private void Start()
     {
-        // This ensures that if the scene starts with alpha=1, it fades in automatically
-        if (canvasGroup.alpha >= 1f)
+        if (canvasGroup.alpha >= 0.99f)
         {
             StartCoroutine(FadeIn());
         }
     }
 
-
-    public void FadeLoadInt (int levelIndex)
+    public void FadeLoadInt(int levelIndex)
     {
         StartCoroutine(FadeOutInt(levelIndex));
     }
@@ -49,88 +49,86 @@ public class Fader : MonoBehaviour
         StartCoroutine(FadeOutString(levelName));
     }
 
-    IEnumerator FadeIn()
+    private IEnumerator FadeIn()
     {
-        // Important: start fully black
-        canvasGroup.alpha = 1f;
         loadingScreen.SetActive(false);
-
         fadeStarted = true;
+
         while (canvasGroup.alpha > 0)
         {
             canvasGroup.alpha -= changeValue;
             yield return new WaitForSeconds(waitTime);
         }
 
-        canvasGroup.alpha = 0f; // Ensure fully transparent at the end
+        canvasGroup.alpha = 0f;
         fadeStarted = false;
     }
 
-    IEnumerator FadeOutString(string levelName)
+    private IEnumerator FadeOutString(string levelName)
     {
-       if (fadeStarted)
-        {
-           yield break;
-        }
+        if (fadeStarted) yield break;
         fadeStarted = true;
+
+        // Fade to black
         while (canvasGroup.alpha < 1)
         {
             canvasGroup.alpha += changeValue;
             yield return new WaitForSeconds(waitTime);
         }
 
-        fadeStarted = false;
+        canvasGroup.alpha = 1f;
+        yield return new WaitForSeconds(0.3f); // Optional pause at black screen
 
-     //SceneManager.LoadScene(levelName);
-     AsyncOperation ao = SceneManager.LoadSceneAsync(levelName); // ✅ Correct
+        // Begin async load
+        AsyncOperation ao = SceneManager.LoadSceneAsync(levelName);
+        ao.allowSceneActivation = false;
 
-     ao.allowSceneActivation = false;
-     loadingScreen.SetActive(true);
-     loadingBar.fillAmount = 0;
-     while (ao.isDone == false)
-     {
-         loadingBar.fillAmount = ao.progress / 0.9f;
-         if (ao.progress == 0.9f)
-         {
-             ao.allowSceneActivation = true;
-         }
+        loadingScreen.SetActive(true);
+        loadingBar.fillAmount = 0;
 
-         yield return null;
-     }
-     
-        StartCoroutine(FadeIn());
+        while (!ao.isDone)
+        {
+            loadingBar.fillAmount = Mathf.Clamp01(ao.progress / 0.9f);
+            if (ao.progress >= 0.9f)
+            {
+                ao.allowSceneActivation = true;
+            }
+            yield return null;
+        }
+
+        yield return StartCoroutine(FadeIn());
     }
 
     public IEnumerator FadeOutInt(int levelIndex)
     {
-        if (fadeStarted)
-        {
-            yield break;
-        }
+        if (fadeStarted) yield break;
         fadeStarted = true;
+
         while (canvasGroup.alpha < 1)
         {
             canvasGroup.alpha += changeValue;
             yield return new WaitForSeconds(waitTime);
         }
 
+        canvasGroup.alpha = 1f;
+        yield return new WaitForSeconds(0.3f);
+
         AsyncOperation ao = SceneManager.LoadSceneAsync(levelIndex);
         ao.allowSceneActivation = false;
+
         loadingScreen.SetActive(true);
         loadingBar.fillAmount = 0;
-        while (ao.isDone == false)
+
+        while (!ao.isDone)
         {
-            loadingBar.fillAmount = ao.progress / 0.9f;
-            if (ao.progress == 0.9f)
+            loadingBar.fillAmount = Mathf.Clamp01(ao.progress / 0.9f);
+            if (ao.progress >= 0.9f)
             {
                 ao.allowSceneActivation = true;
             }
-
             yield return null;
         }
 
-        StartCoroutine(FadeIn());
+        yield return StartCoroutine(FadeIn());
     }
-
-    
 }
