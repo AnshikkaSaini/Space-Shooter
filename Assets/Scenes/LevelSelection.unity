@@ -3810,6 +3810,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1151135463}
   - component: {fileID: 1151135464}
+  - component: {fileID: 1151135465}
   m_Layer: 5
   m_Name: LevelBase
   m_TagString: Untagged
@@ -3867,6 +3868,42 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1151135465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1151135462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 555e9b3e937946749a2d9f3048c75ae9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lvlButton:
+  - {fileID: 900912495}
+  - {fileID: 1528824080}
+  - {fileID: 1244198238}
+  - {fileID: 432580473}
+  - {fileID: 1668065022}
+  - {fileID: 316511177}
+  - {fileID: 1710923005}
+  - {fileID: 1197956937}
+  - {fileID: 1107836085}
+  - {fileID: 2082798419}
+  - {fileID: 1189396469}
+  - {fileID: 192590825}
+  - {fileID: 1185774668}
+  - {fileID: 1233140931}
+  - {fileID: 993513333}
+  - {fileID: 1325675484}
+  - {fileID: 833390663}
+  - {fileID: 891662858}
+  - {fileID: 788922228}
+  - {fileID: 1254687373}
+  unlockedIcon: {fileID: 21300000, guid: 7da4bc90fbc374c48a8b3b6f02a51023, type: 3}
+  lockedIcon: {fileID: 21300000, guid: f614fcaf10b0d8e468e44738dcf8c628, type: 3}
+  firstLevelBuildIndex: 2
 --- !u!1 &1185774666
 GameObject:
   m_ObjectHideFlags: 0
