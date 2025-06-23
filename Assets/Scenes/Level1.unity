@@ -2212,6 +2212,10 @@ PrefabInstance:
       propertyPath: m_HorizontalAlignment
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 3896779148405274956, guid: 45386236aad743f4f9868cbc5736e9ea, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4493999757265636022, guid: 45386236aad743f4f9868cbc5736e9ea, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -2224,6 +2228,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: HomeButton
       objectReference: {fileID: 0}
+    - target: {fileID: 5745181925252994017, guid: 45386236aad743f4f9868cbc5736e9ea, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -437
+      objectReference: {fileID: 0}
+    - target: {fileID: 5745181925252994017, guid: 45386236aad743f4f9868cbc5736e9ea, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -37
+      objectReference: {fileID: 0}
     - target: {fileID: 5869474518061572873, guid: 45386236aad743f4f9868cbc5736e9ea, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -2232,6 +2244,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1693212007}
+    - target: {fileID: 6281467729589234780, guid: 45386236aad743f4f9868cbc5736e9ea, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 723.81
+      objectReference: {fileID: 0}
     - target: {fileID: 7232752516454275271, guid: 45386236aad743f4f9868cbc5736e9ea, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -2240,12 +2256,21 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: LevelSelection
       objectReference: {fileID: 0}
+    - target: {fileID: 7504744721331635463, guid: 45386236aad743f4f9868cbc5736e9ea, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -19
+      objectReference: {fileID: 0}
+    - target: {fileID: 7504744721331635463, guid: 45386236aad743f4f9868cbc5736e9ea, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7780689509032630608, guid: 45386236aad743f4f9868cbc5736e9ea, type: 3}
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4802567246973073262, guid: 45386236aad743f4f9868cbc5736e9ea, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45386236aad743f4f9868cbc5736e9ea, type: 3}

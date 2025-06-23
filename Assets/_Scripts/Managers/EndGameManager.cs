@@ -98,4 +98,21 @@ public class EndGameManager : MonoBehaviour
     {
         scoreTextComponent = scoreText;
     }
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        gameOver = false;              // ✅ Reset game state
+        score = 0;                     // ✅ Optional: reset score if per-level
+        scoreTextComponent = null;     // ✅ Ensure new scene can re-register it
+        panelController = null;        // ✅ Ensure new scene can re-register it
+    }
 }

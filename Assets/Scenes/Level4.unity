@@ -2010,10 +2010,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3896779148405274956, guid: 45386236aad743f4f9868cbc5736e9ea, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4493999757265636022, guid: 45386236aad743f4f9868cbc5736e9ea, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -2028,7 +2024,7 @@ PrefabInstance:
       objectReference: {fileID: 1693212007}
     - target: {fileID: 7232752516454275271, guid: 45386236aad743f4f9868cbc5736e9ea, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Level3
+      value: Level5
       objectReference: {fileID: 0}
     - target: {fileID: 7780689509032630608, guid: 45386236aad743f4f9868cbc5736e9ea, type: 3}
       propertyPath: m_Name
@@ -2244,10 +2240,6 @@ PrefabInstance:
     - target: {fileID: 4493188571673830209, guid: dd7e0bd12b0a0aa44a7db69f1da22076, type: 3}
       propertyPath: m_Name
       value: CanvasFader
-      objectReference: {fileID: 0}
-    - target: {fileID: 4493188571673830209, guid: dd7e0bd12b0a0aa44a7db69f1da22076, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8814759971000187120, guid: dd7e0bd12b0a0aa44a7db69f1da22076, type: 3}
       propertyPath: m_Pivot.x
