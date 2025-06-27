@@ -7,16 +7,18 @@ public class Fader : MonoBehaviour
 {
     public static Fader Instance;
 
-    [Header("Fade Settings")]
-    [SerializeField] private CanvasGroup canvasGroup;
+    [Header("Fade Settings")] [SerializeField]
+    private CanvasGroup canvasGroup;
+
     [SerializeField] private float changeValue = 0.05f;
     [SerializeField] private float waitTime = 0.01f;
 
-    [Header("Loading Screen")]
-    [SerializeField] private GameObject loadingScreen;
+    [Header("Loading Screen")] [SerializeField]
+    private GameObject loadingScreen;
+
     [SerializeField] private Image loadingBar;
 
-    private bool fadeStarted = false;
+    private bool fadeStarted;
 
     private void Awake()
     {
@@ -33,10 +35,7 @@ public class Fader : MonoBehaviour
 
     private void Start()
     {
-        if (canvasGroup.alpha >= 0.99f)
-        {
-            StartCoroutine(FadeIn());
-        }
+        if (canvasGroup.alpha >= 0.99f) StartCoroutine(FadeIn());
     }
 
     public void FadeLoadInt(int levelIndex)
@@ -80,7 +79,7 @@ public class Fader : MonoBehaviour
         yield return new WaitForSeconds(0.3f); // Optional pause at black screen
 
         // Begin async load
-        AsyncOperation ao = SceneManager.LoadSceneAsync(levelName);
+        var ao = SceneManager.LoadSceneAsync(levelName);
         ao.allowSceneActivation = false;
 
         loadingScreen.SetActive(true);
@@ -89,10 +88,7 @@ public class Fader : MonoBehaviour
         while (!ao.isDone)
         {
             loadingBar.fillAmount = Mathf.Clamp01(ao.progress / 0.9f);
-            if (ao.progress >= 0.9f)
-            {
-                ao.allowSceneActivation = true;
-            }
+            if (ao.progress >= 0.9f) ao.allowSceneActivation = true;
             yield return null;
         }
 
@@ -113,7 +109,7 @@ public class Fader : MonoBehaviour
         canvasGroup.alpha = 1f;
         yield return new WaitForSeconds(0.3f);
 
-        AsyncOperation ao = SceneManager.LoadSceneAsync(levelIndex);
+        var ao = SceneManager.LoadSceneAsync(levelIndex);
         ao.allowSceneActivation = false;
 
         loadingScreen.SetActive(true);
@@ -122,10 +118,7 @@ public class Fader : MonoBehaviour
         while (!ao.isDone)
         {
             loadingBar.fillAmount = Mathf.Clamp01(ao.progress / 0.9f);
-            if (ao.progress >= 0.9f)
-            {
-                ao.allowSceneActivation = true;
-            }
+            if (ao.progress >= 0.9f) ao.allowSceneActivation = true;
             yield return null;
         }
 

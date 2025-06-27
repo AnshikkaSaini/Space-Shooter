@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PanelController : MonoBehaviour
@@ -8,25 +6,21 @@ public class PanelController : MonoBehaviour
     [SerializeField] private GameObject winScreen;
     [SerializeField] private GameObject loseScreen;
     private int alpha;
-    
-    void Start()
+
+    private void Start()
     {
-        EndGameManager.Instance.RegisterPanelController( this);
+        EndGameManager.Instance.RegisterPanelController(this);
     }
 
     public void ActivateWin()
     {
         cGroup.alpha = 1;
         winScreen.SetActive(true);
-
     }
 
     public void ActivateLose()
     {
         cGroup.alpha = 1;
         loseScreen.SetActive(true);
-
     }
-
-    
 }

@@ -1,19 +1,18 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class EndGameManager : MonoBehaviour
 {
     public static EndGameManager Instance;
     public bool gameOver;
+
+    [HideInInspector] public string lvlUnlock = "Level Unlock";
+
     private PanelController panelController;
-    private TextMeshProUGUI scoreTextComponent;
     private int score;
-    [HideInInspector]
-    public string lvlUnlock = "Level Unlock";
+    private TextMeshProUGUI scoreTextComponent;
 
     private void Awake()
     {
@@ -28,10 +27,20 @@ public class EndGameManager : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
     public void UpdateScore(int addScore)
     {
         score += addScore;
-        scoreTextComponent.text = "Score:" + score.ToString();
+        scoreTextComponent.text = "Score:" + score;
     }
 
 
@@ -50,26 +59,19 @@ public class EndGameManager : MonoBehaviour
     public void ResolveGame()
     {
         if (gameOver == false)
-        {
             WinGame();
-        }
         else
-        {
             LoseGame();
-        }
     }
 
     public void WinGame()
     {
         ScoreSet();
         panelController.ActivateWin();
-        int nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
-        if (nextLevel > PlayerPrefs.GetInt(lvlUnlock,0))
-        {
-            PlayerPrefs.SetInt(lvlUnlock,nextLevel);
-        }
+        var nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
+        if (nextLevel > PlayerPrefs.GetInt(lvlUnlock, 0)) PlayerPrefs.SetInt(lvlUnlock, nextLevel);
     }
-    
+
     public void LoseGame()
     {
         ScoreSet();
@@ -79,11 +81,8 @@ public class EndGameManager : MonoBehaviour
     private void ScoreSet()
     {
         PlayerPrefs.SetInt("Score" + SceneManager.GetActiveScene().name, score);
-        int highScore = PlayerPrefs.GetInt("HighScore" + SceneManager.GetActiveScene().name, 0);
-        if (score > highScore)
-        {
-            PlayerPrefs.SetInt("HighScore" + SceneManager.GetActiveScene().name,score);
-        }
+        var highScore = PlayerPrefs.GetInt("HighScore" + SceneManager.GetActiveScene().name, 0);
+        if (score > highScore) PlayerPrefs.SetInt("HighScore" + SceneManager.GetActiveScene().name, score);
 
         score = 0;
     }
@@ -98,21 +97,12 @@ public class EndGameManager : MonoBehaviour
     {
         scoreTextComponent = scoreText;
     }
-    private void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    private void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        gameOver = false;              // ✅ Reset game state
-        score = 0;                     // ✅ Optional: reset score if per-level
-        scoreTextComponent = null;     // ✅ Ensure new scene can re-register it
-        panelController = null;        // ✅ Ensure new scene can re-register it
+        gameOver = false; // ✅ Reset game state
+        score = 0; // ✅ Optional: reset score if per-level
+        scoreTextComponent = null; // ✅ Ensure new scene can re-register it
+        panelController = null; // ✅ Ensure new scene can re-register it
     }
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ShieldActivator : MonoBehaviour
@@ -9,12 +7,8 @@ public class ShieldActivator : MonoBehaviour
     public void ActivateShield()
     {
         if (!shield.gameObject.activeSelf)
-        {
             shield.gameObject.SetActive(true);
-        }
         else
-        {
             shield.RepairShield();
-        }
     }
 }

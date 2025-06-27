@@ -2,17 +2,17 @@ using UnityEngine;
 
 public class ScrollTexture : MonoBehaviour
 {
-    private MeshRenderer meshRenderer;
     public float scrollSpeedY = 0.1f;
     private Vector2 currentOffset;
+    private MeshRenderer meshRenderer;
 
-    void Start()
+    private void Start()
     {
         meshRenderer = GetComponent<MeshRenderer>();
         currentOffset = meshRenderer.materials[0].mainTextureOffset; // Initialize
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         currentOffset.y += scrollSpeedY * Time.fixedDeltaTime;
         meshRenderer.materials[0].mainTextureOffset = currentOffset;

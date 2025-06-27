@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.Advertisements;
 
@@ -6,9 +5,9 @@ public class BannerAds : MonoBehaviour
 {
     [SerializeField] private string _androidAdUnit = "Banner_Android";
     [SerializeField] private string _iOSAdUnit = "Banner_iOS";
-    private string _adUnitID = null;
 
     [SerializeField] private BannerPosition _bannerPosition = BannerPosition.BOTTOM_CENTER;
+    private string _adUnitID;
 
     private void Start()
     {
@@ -27,7 +26,7 @@ public class BannerAds : MonoBehaviour
         {
             Advertisement.Banner.SetPosition(_bannerPosition);
 
-            BannerLoadOptions options = new BannerLoadOptions()
+            var options = new BannerLoadOptions
             {
                 loadCallback = OnBannerLoaded,
                 errorCallback = OnBannerError
@@ -35,8 +34,6 @@ public class BannerAds : MonoBehaviour
 
             Advertisement.Banner.Load(_adUnitID, options);
         }
-
-        
     }
 
     private void OnBannerLoaded()

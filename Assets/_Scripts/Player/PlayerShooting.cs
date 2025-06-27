@@ -4,24 +4,26 @@ public class PlayerShooting : MonoBehaviour
 {
     [SerializeField] private GameObject laserBullet;
     [SerializeField] private float shootingInterval = 0.5f;
-    [Header("Basic Attack")]
-    [SerializeField] private Transform ShootingPoint;
 
-    [Header("Upgrade Points")]
-    [SerializeField] private Transform leftCanon;
-    [SerializeField]private Transform rightCanon;
+    [Header("Basic Attack")] [SerializeField]
+    private Transform ShootingPoint;
+
+    [Header("Upgrade Points")] [SerializeField]
+    private Transform leftCanon;
+
+    [SerializeField] private Transform rightCanon;
     [SerializeField] private AudioSource source;
-    
-    private int upgradeLevel = 0;
-    
+
     private float intervalReset;
 
-    void Start()
+    private int upgradeLevel;
+
+    private void Start()
     {
         intervalReset = shootingInterval;
     }
 
-    void Update()
+    private void Update()
     {
         shootingInterval -= Time.deltaTime;
         if (shootingInterval <= 0f)
@@ -34,19 +36,11 @@ public class PlayerShooting : MonoBehaviour
     public void IncreaseUpgrade(int increaseAmount)
     {
         upgradeLevel += increaseAmount;
-        if (upgradeLevel > 4)
-        {
-            upgradeLevel = 4;
-        }
-    }
-
-    // ReSharper disable Unity.PerformanceAnalysis
+        if (upgradeLevel > 4) upgradeLevel = 4;
+    } // ReSharper disable Unity.PerformanceAnalysis
     private void Shooting()
     {
-        if(source != null)
-        {
-            source.Play();
-        }
+        if (source != null) source.Play();
 
         switch (upgradeLevel)
         {
@@ -59,13 +53,9 @@ public class PlayerShooting : MonoBehaviour
                 break;
             case 2:
                 Instantiate(laserBullet, ShootingPoint.position, Quaternion.identity);
-                Instantiate(laserBullet, leftCanon.position,Quaternion.identity);
+                Instantiate(laserBullet, leftCanon.position, Quaternion.identity);
                 Instantiate(laserBullet, rightCanon.position, Quaternion.identity);
                 break;
-           
-                
-            
         }
-        
     }
 }

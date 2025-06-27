@@ -1,8 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ScoreDisplay : MonoBehaviour
@@ -13,10 +10,10 @@ public class ScoreDisplay : MonoBehaviour
 
     private void OnEnable()
     {
-        int score = PlayerPrefs.GetInt("Score" + SceneManager.GetActiveScene().name, 0);
-        scoreText.text = "Score: " + score.ToString();
+        var score = PlayerPrefs.GetInt("Score" + SceneManager.GetActiveScene().name, 0);
+        scoreText.text = "Score: " + score;
 
-        int HighScore = PlayerPrefs.GetInt("HighScore" + SceneManager.GetActiveScene().name, 0);
-        HighScoreText.text = "HighScore: " + HighScore.ToString();
+        var HighScore = PlayerPrefs.GetInt("HighScore" + SceneManager.GetActiveScene().name, 0);
+        HighScoreText.text = "HighScore: " + HighScore;
     }
 }

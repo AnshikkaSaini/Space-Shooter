@@ -1,22 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PowerUpShield : MonoBehaviour
 {
     [SerializeField] private AudioClip clickToPlay;
-    void OnTriggerEnter2D(Collider2D collision)
+
+    private void OnBecameInvisible()
+    {
+        Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("Shield pickup triggered by: " + collision.name + ", Tag: " + collision.tag);
 
         if (collision.CompareTag("Player"))
         {
-            ShieldActivator shieldActivator = collision.GetComponent<ShieldActivator>();
+            var shieldActivator = collision.GetComponent<ShieldActivator>();
             if (shieldActivator != null)
             {
                 Debug.Log("ShieldActivator found, activating shield...");
                 shieldActivator.ActivateShield();
-                AudioSource.PlayClipAtPoint(clickToPlay,transform.position,1f);
+                AudioSource.PlayClipAtPoint(clickToPlay, transform.position, 1f);
                 Destroy(gameObject);
             }
             else
@@ -25,10 +29,4 @@ public class PowerUpShield : MonoBehaviour
             }
         }
     }
-
-    private void OnBecameInvisible()
-    {
-        Destroy(gameObject);
-    }
-
 }

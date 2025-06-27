@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Advertisements;
 
@@ -9,9 +7,9 @@ public class InterstitialAd : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsSho
     [SerializeField] private string _iOSAdUnit = "Interstitial_iOS";
     [SerializeField] private BannerAds bannerAd;
     private string _adUnitID;
-    
 
-    void Awake(Object instance)
+
+    private void Awake(Object instance)
     {
         if (instance != null && instance != this)
         {
@@ -29,25 +27,12 @@ public class InterstitialAd : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsSho
         LoadAd();
     }
 
-    public void LoadAd()
-    {
-        if (Advertisement.isInitialized)
-        {
-            Advertisement.Load(_adUnitID, this);
-        }
-    }
-
-    public void ShowAd()
-    {
-            Advertisement.Show(_adUnitID, this);
-    }
-
     // --- Load Callbacks ---
     public void OnUnityAdsAdLoaded(string placementId)
     {
         Debug.Log("Ad Loaded: " + placementId);
         // Optional: Auto-show ad once loaded
-         ShowAd();
+        ShowAd();
     }
 
     public void OnUnityAdsFailedToLoad(string placementId, UnityAdsLoadError error, string message)
@@ -77,12 +62,20 @@ public class InterstitialAd : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsSho
         Debug.Log("Ad Started");
         Advertisement.Banner.Hide();
         Time.timeScale = 0;
-        
-        
     }
 
     public void OnUnityAdsShowClick(string placementId)
     {
         Debug.Log("Ad Clicked");
+    }
+
+    public void LoadAd()
+    {
+        if (Advertisement.isInitialized) Advertisement.Load(_adUnitID, this);
+    }
+
+    public void ShowAd()
+    {
+        Advertisement.Show(_adUnitID, this);
     }
 }

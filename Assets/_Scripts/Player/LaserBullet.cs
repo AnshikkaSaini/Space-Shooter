@@ -17,21 +17,18 @@ public class LaserBullet : MonoBehaviour
         Debug.Log("Bullet Direction: " + transform.up + ", Speed: " + speed);
     }
 
+    private void OnBecameInvisible()
+    {
+        Destroy(gameObject);
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player")) return; // Ignore self or player collision
 
-        Enemy enemy = other.GetComponent<Enemy>();
-        if (enemy != null)
-        {
-            enemy.TakeDamage(damage);
-        }
+        var enemy = other.GetComponent<Enemy>();
+        if (enemy != null) enemy.TakeDamage(damage);
 
         Destroy(gameObject);
-    }
-
-    private void OnBecameInvisible()
-    {
-      Destroy(gameObject);
     }
 }

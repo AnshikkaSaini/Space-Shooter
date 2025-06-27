@@ -1,13 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GreenEnemy : Enemy
 {
     [SerializeField] private float speed;
-    void Start()
+
+    private void Start()
     {
         rb.velocity = Vector2.down * speed;
+    }
+
+    private void OnBecameInvisible()
+    {
+        Destroy(gameObject);
     }
 
     // Update is called once per frame
@@ -20,9 +24,10 @@ public class GreenEnemy : Enemy
             Destroy(gameObject);
         }
     }
+
     public override void HurtSequence()
     {
-        if(anim.GetCurrentAnimatorStateInfo(0).IsTag("Dmg"))
+        if (anim.GetCurrentAnimatorStateInfo(0).IsTag("Dmg"))
             return;
         anim.SetTrigger("Damage");
     }
@@ -31,11 +36,6 @@ public class GreenEnemy : Enemy
     {
         base.DeathSequence();
         Instantiate(explosionPefab, transform.position, transform.rotation);
-        Destroy(gameObject);
-    }
-
-    private void OnBecameInvisible()
-    {
         Destroy(gameObject);
     }
 }

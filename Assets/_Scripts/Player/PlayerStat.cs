@@ -4,20 +4,20 @@ using UnityEngine.UI;
 
 public class PlayerStat : MonoBehaviour
 {
-    
     [SerializeField] private int maxHealth = 3;
-    private float health;
     [SerializeField] private Image healthFill;
     [SerializeField] protected GameObject explosionPefab;
     [SerializeField] public Shield shield;
- 
+
     [SerializeField] private Animator anim;
     private bool canPlayAnim = true;
-    void Start()
+    private float health;
+
+    private void Start()
     {
         health = maxHealth;
-       // healthFill.fillAmount = health / maxHealth;
-        EndGameManager.Instance.gameOver = false ;
+        // healthFill.fillAmount = health / maxHealth;
+        EndGameManager.Instance.gameOver = false;
         StartCoroutine(UpdateHealthBar());
     }
 
@@ -25,21 +25,22 @@ public class PlayerStat : MonoBehaviour
     {
         if (shield != null && shield.protection && false)
         {
-            shield.DamageShield();  // Now this will work
-            return;                 // Shield absorbs damage, no health lost
+            shield.DamageShield(); // Now this will work
+            return; // Shield absorbs damage, no health lost
         }
 
         health -= value;
-      
+
         Debug.Log("Player took damage. Remaining Health: " + health);
         healthFill.fillAmount = health / maxHealth;
         if (canPlayAnim)
         {
             anim.SetTrigger("Damage");
             StartCoroutine(AntiSpamAnimation());
-        } ;
+        }
 
-      
+        ;
+
 
         if (health <= 0)
         {
@@ -57,11 +58,12 @@ public class PlayerStat : MonoBehaviour
         yield return new WaitForSeconds(0.15f);
         canPlayAnim = true;
     }
+
     private IEnumerator UpdateHealthBar()
     {
-        float startFill = healthFill.fillAmount;
-        float targetFill = health / maxHealth;
-        float t = 0f;
+        var startFill = healthFill.fillAmount;
+        var targetFill = health / maxHealth;
+        var t = 0f;
         while (t < 1f)
         {
             t += Time.deltaTime * 5f; // speed multiplier
@@ -75,13 +77,9 @@ public class PlayerStat : MonoBehaviour
         Debug.Log("Healing by: " + healAmount); // 🔍 LOG
 
         health += healAmount;
-        if (health > maxHealth)
-        {
-            health = maxHealth;
-        }
+        if (health > maxHealth) health = maxHealth;
 
         StopCoroutine(UpdateHealthBar()); // optional: cancel any running animation
         StartCoroutine(UpdateHealthBar()); // smooth bar update
     }
-
 }

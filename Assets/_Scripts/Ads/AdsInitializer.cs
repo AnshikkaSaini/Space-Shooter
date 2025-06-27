@@ -9,11 +9,11 @@ public class AdsInitializer : MonoBehaviour, IUnityAdsInitializationListener
 
     private string _gameId;
 
-    void Awake()
+    private void Awake()
     {
         if (!Advertisement.isInitialized)
         {
-            _gameId = (Application.platform == RuntimePlatform.IPhonePlayer)
+            _gameId = Application.platform == RuntimePlatform.IPhonePlayer
                 ? _iOSGameId
                 : _androidGameId;
 

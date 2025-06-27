@@ -1,9 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class ButtonIcons : MonoBehaviour
 {
@@ -14,15 +11,14 @@ public class ButtonIcons : MonoBehaviour
 
     private void Awake()
     {
-        int unlockedLvl = PlayerPrefs.GetInt(EndGameManager.Instance.lvlUnlock, firstLevelBuildIndex);
-        for (int i = 0; i < lvlButton.Length; i++)
-        {
+        var unlockedLvl = PlayerPrefs.GetInt(EndGameManager.Instance.lvlUnlock, firstLevelBuildIndex);
+        for (var i = 0; i < lvlButton.Length; i++)
             if (i + firstLevelBuildIndex <= unlockedLvl)
             {
                 lvlButton[i].interactable = true;
                 lvlButton[i].image.sprite = unlockedIcon;
-    
-                TextMeshProUGUI textButton = lvlButton[i].GetComponentInChildren<TextMeshProUGUI>();
+
+                var textButton = lvlButton[i].GetComponentInChildren<TextMeshProUGUI>();
                 textButton.text = (i + 1).ToString();
                 textButton.enabled = true;
             }
@@ -31,12 +27,10 @@ public class ButtonIcons : MonoBehaviour
                 lvlButton[i].interactable = false;
                 lvlButton[i].image.sprite = lockedIcon;
 
-                TextMeshProUGUI textButton = 
+                var textButton =
                     lvlButton[i].GetComponentInChildren<TextMeshProUGUI>();
                 if (textButton != null)
                     textButton.enabled = false;
             }
-
-        }
     }
 }
