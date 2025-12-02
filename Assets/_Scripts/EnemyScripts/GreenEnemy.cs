@@ -1,4 +1,5 @@
 using UnityEngine;
+using _Scripts.Managers;
 
 public class GreenEnemy : Enemy
 {
@@ -11,7 +12,15 @@ public class GreenEnemy : Enemy
 
     private void OnBecameInvisible()
     {
-        Destroy(gameObject);
+        // Return to pool if available
+        if (PoolManager.Instance != null)
+        {
+            PoolManager.Instance.Return(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     // Update is called once per frame
@@ -21,7 +30,14 @@ public class GreenEnemy : Enemy
         {
             collision.GetComponent<PlayerStat>().TakeDamage(damage);
             Instantiate(explosionPefab, transform.position, transform.rotation);
-            Destroy(gameObject);
+            if (PoolManager.Instance != null)
+            {
+                PoolManager.Instance.Return(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
 
@@ -36,6 +52,13 @@ public class GreenEnemy : Enemy
     {
         base.DeathSequence();
         Instantiate(explosionPefab, transform.position, transform.rotation);
-        Destroy(gameObject);
+        if (PoolManager.Instance != null)
+        {
+            PoolManager.Instance.Return(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }
