@@ -2208,6 +2208,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1318112116027971668, guid: 45386236aad743f4f9868cbc5736e9ea, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1693212007}
+    - target: {fileID: 1318112116027971668, guid: 45386236aad743f4f9868cbc5736e9ea, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadLevelString
+      objectReference: {fileID: 0}
     - target: {fileID: 3377370159438439546, guid: 45386236aad743f4f9868cbc5736e9ea, type: 3}
       propertyPath: m_HorizontalAlignment
       value: 4
