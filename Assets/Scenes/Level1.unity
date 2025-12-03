@@ -586,7 +586,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 8.222222
+  orthographic size: 8.666667
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2208,6 +2208,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1318112116027971668, guid: 45386236aad743f4f9868cbc5736e9ea, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1693212007}
+    - target: {fileID: 1318112116027971668, guid: 45386236aad743f4f9868cbc5736e9ea, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadLevelString
+      objectReference: {fileID: 0}
     - target: {fileID: 3377370159438439546, guid: 45386236aad743f4f9868cbc5736e9ea, type: 3}
       propertyPath: m_HorizontalAlignment
       value: 4
@@ -2221,6 +2229,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1693212007}
     - target: {fileID: 4493999757265636022, guid: 45386236aad743f4f9868cbc5736e9ea, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: LevelSelection
+      objectReference: {fileID: 0}
+    - target: {fileID: 4535207211601793245, guid: 45386236aad743f4f9868cbc5736e9ea, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1693212007}
+    - target: {fileID: 4535207211601793245, guid: 45386236aad743f4f9868cbc5736e9ea, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadLevelString
+      objectReference: {fileID: 0}
+    - target: {fileID: 4535207211601793245, guid: 45386236aad743f4f9868cbc5736e9ea, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: LevelSelection
       objectReference: {fileID: 0}

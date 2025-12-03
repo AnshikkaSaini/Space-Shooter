@@ -1,4 +1,5 @@
 using UnityEngine;
+using _Scripts.Managers;
 
 namespace _Scripts.EnemyScripts
 {
@@ -22,15 +23,31 @@ namespace _Scripts.EnemyScripts
             shootTimer += Time.deltaTime;
             if (shootTimer >= shootInterval)
             {
-                Instantiate(bulletPrefab, leftCanon.position, Quaternion.identity);
-                Instantiate(bulletPrefab, rightCanon.position, Quaternion.identity);
+                // Use pooling for bullets
+                if (PoolManager.Instance != null)
+                {
+                    PoolManager.Instance.Get(bulletPrefab, leftCanon.position, Quaternion.identity);
+                    PoolManager.Instance.Get(bulletPrefab, rightCanon.position, Quaternion.identity);
+                }
+                else
+                {
+                    Instantiate(bulletPrefab, leftCanon.position, Quaternion.identity);
+                    Instantiate(bulletPrefab, rightCanon.position, Quaternion.identity);
+                }
                 shootTimer = 0f;
             }
         }
 
         private void OnBecameInvisible()
         {
-            Destroy(gameObject);
+            if (PoolManager.Instance != null)
+            {
+                PoolManager.Instance.Return(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
@@ -39,7 +56,14 @@ namespace _Scripts.EnemyScripts
             {
                 collision.GetComponent<PlayerStat>().TakeDamage(damage);
                 Instantiate(explosionPefab, transform.position, transform.rotation);
-                Destroy(gameObject);
+                if (PoolManager.Instance != null)
+                {
+                    PoolManager.Instance.Return(gameObject);
+                }
+                else
+                {
+                    Destroy(gameObject);
+                }
             }
         }
 
@@ -54,7 +78,14 @@ namespace _Scripts.EnemyScripts
         {
             base.DeathSequence();
             Instantiate(explosionPefab, transform.position, transform.rotation);
-            Destroy(gameObject);
+            if (PoolManager.Instance != null)
+            {
+                PoolManager.Instance.Return(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

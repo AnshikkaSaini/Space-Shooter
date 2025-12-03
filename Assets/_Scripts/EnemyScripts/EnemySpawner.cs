@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using _Scripts.Managers;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -33,9 +34,10 @@ public class EnemySpawner : MonoBehaviour
         if (enemyTimer >= enemySpawnTime)
         {
             var randomPick = Random.Range(0, enemy.Length);
-            Instantiate(enemy[randomPick],
-                new Vector3(Random.Range(maxLeft, maxRight), yPos, 0)
-                , Quaternion.identity);
+            var prefab = enemy[randomPick];
+            var spawnPos = new Vector3(Random.Range(maxLeft, maxRight), yPos, 0);
+            // Use pooling instead of Instantiate
+            PoolManager.Instance.Get(prefab, spawnPos, Quaternion.identity);
             enemyTimer = 0;
         }
     }
