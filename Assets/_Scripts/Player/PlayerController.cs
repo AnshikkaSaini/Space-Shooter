@@ -23,6 +23,17 @@ namespace _Scripts
 
         private void Update()
         {
+#if  UNITY_IOS || UNITY_ANDROID 
+            // Handle both touch and mouse input for cross-platform compatibility
+            HandleTouchInput();
+#else 
+            // Touch for mobile devices, mouse for WebGL/desktop builds
+            HandleMouseInput();
+#endif
+        }
+
+        private void HandleTouchInput()
+        {
             if (Touch.activeTouches.Count > 0)
             {
                 var myTouch = Touch.activeTouches[0];
@@ -66,6 +77,49 @@ namespace _Scripts
                     myTouch.phase == TouchPhase.Canceled)
                     isDragging = false;
             }
+        }
+
+        private void HandleMouseInput()
+        {
+            // Only handle mouse input if no touches are active (prevents conflicts on touch devices)
+            if (Touch.activeTouches.Count > 0) return;
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                var mouseWorldPos = _mainCam.ScreenToWorldPoint(new Vector3(
+                    Input.mousePosition.x,
+                    Input.mousePosition.y,
+                    10f
+                ));
+                mouseWorldPos.z = 0f;
+
+                var hit = Physics2D.OverlapPoint(new Vector2(mouseWorldPos.x, mouseWorldPos.y));
+                if (hit != null && hit.transform == transform)
+                {
+                    isDragging = true;
+                    _offset = mouseWorldPos - transform.position;
+                }
+            }
+
+            if (Input.GetMouseButton(0) && isDragging)
+            {
+                var mouseWorldPos = _mainCam.ScreenToWorldPoint(new Vector3(
+                    Input.mousePosition.x,
+                    Input.mousePosition.y,
+                    10f
+                ));
+                mouseWorldPos.z = 0f;
+
+                var targetPos = mouseWorldPos - _offset;
+                transform.position = new Vector3(
+                    Mathf.Clamp(targetPos.x, maxLeft, maxRight),
+                    Mathf.Clamp(targetPos.y, maxDown, maxUp),
+                    0f
+                );
+            }
+
+            if (Input.GetMouseButtonUp(0))
+                isDragging = false;
         }
 
         private void OnEnable()
